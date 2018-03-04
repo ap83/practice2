@@ -1,0 +1,33 @@
+- name: install php components
+  apt: name={{ item }} state=present update_cache=yes
+  with_items:
+    - php
+    - libapache2-mod-php
+    - php-xml
+    - php-curl
+    - php-gd
+    - php-imagick
+    - php-imap
+    - php-mcrypt
+    - php-recode
+    - php-tidy
+    - php-xmlrpc
+    - php-mysql
+
+- name: create directory
+  file:
+    state: directory
+    path: /tmp/drupal
+    mode: 0777
+
+- name: download sources
+  get_url:
+    url: http://ftp.drupal.org/files/projects/drupal-8.3.5.tar.gz
+    dest: /tmp/
+    mode: 0777
+
+- name: Extract drupal.tar.gz into /tmp/drupal/
+  unarchive:
+    src: /tmp/drupal-8.3.5.tar.gz
+    dest: /tmp/drupal/
+    mode: 0755

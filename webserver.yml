@@ -5,3 +5,5 @@
   roles:
     - apache2
     - postgresql
+    - iptables
+    - drupal
