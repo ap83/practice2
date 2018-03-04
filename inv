@@ -1,0 +1,12 @@
+[webserver]
+192.168.122.32 ansible_user=apashchenko ansible_ssh_private_key_file=/home/apashchenko/.ssh/id_rsa
+192.168.122.33 ansible_user=apashchenko ansible_ssh_private_key_file=/home/apashchenko/.ssh/id_rsa
+
+[loadbalancer]
+192.168.122.34 ansible_user=apashchenko ansible_ssh_private_key_file=/home/apashchenko/.ssh/id_rsa
+
+[database]
+192.168.122.41
+
+[control]
+localhost ansible_connection=local

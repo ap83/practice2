@@ -1,0 +1,14 @@
+- name: install packages to control pc
+  apt:
+    name: "{{ item }}"
+    state: present
+#    update_cache: yes      error, fix later
+  with_items:
+    - qemu-kvm
+    - libvirt-bin
+    - bridge-utils
+    - virtinst
+    - cloud-init
+    - cloud-image-utils
+    - curl
+  tags: [ 'packages' ]

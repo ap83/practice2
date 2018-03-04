@@ -1,0 +1,36 @@
+- name: install packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - postgresql
+    - python-psycopg2
+
+- name: change listen ip
+  lineinfile:
+    dest: "/etc/postgresql/9.5/main/postgresql.conf"
+    regexp: "listen_addresses = '*'"
+    line: "listen_addresses = '*'"
+  notify:
+    - "restart postgres"
+
+- name: upload pg_hba.conf
+  copy:
+    src: pg_hba.conf
+    dest: "/etc/postgresql/9.5/main/pg_hba.conf"
+  notify:
+    - "restart postgres"
+
+- block:
+  - name: create database
+    postgresql_db:
+      name: "{{ postgres_database }}"
+
+  - name: create user
+    postgresql_user:
+      db: "{{ postgres_database }}"
+      name: "{{ postgres_user }}"
+      password: "{{ postgres_password }}"
+  become: true
+  become_user: postgres

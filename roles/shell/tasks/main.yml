@@ -1,0 +1,4 @@
+---
+  - name: executing the script kvm_vms_start.sh.
+#    shell: kvm_vms_start.sh vm40
+    shell: "/home/apashchenko/Downloads/DevOps/Project/kvm_vms_start.sh vm41"

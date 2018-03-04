@@ -1,0 +1,13 @@
+upstream 192.168.122.34 {
+    {% for server in groups.webserver %}
+        server {{ server }}:80 weight=1;
+    {% endfor %}
+}
+
+server {
+    listen 80;
+
+    location / {
+        proxy_pass http://192.168.122.34;
+    }
+}
