@@ -12,7 +12,7 @@
     - php-recode
     - php-tidy
     - php-xmlrpc
-    - php-mysql
+#    - php-mysql
 
 - name: create directory
   file:
@@ -26,8 +26,9 @@
     dest: /tmp/
     mode: 0777
 
-- name: Extract drupal.tar.gz into /tmp/drupal/
+- name: Extract drupal.tar.gz into /tmp/
   unarchive:
     src: /tmp/drupal-8.3.5.tar.gz
-    dest: /tmp/drupal/
+    dest: /tmp/
     mode: 0755
+    remote_src: yes
